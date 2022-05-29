@@ -3,14 +3,14 @@ version: '3.7'
 services:
   web:
     image: be-friends-fe
-    # build:
-    #   context: be-friends
-    #   dockerfile: be-friends/Dockerfile 
+    ports:
+      - 3000:3000
+    environment:
+      - BACKEND_URL=http://api:8080
   api:
     image: be-friends-api
-    # build:
-    #   context: be-friends-api
-    #   dockerfile: be-friends-api/Dockerfile
+    ports:
+      - 8080:8080
     environment:
       - LINE_CLIENT_ID=
       - LINE_SECRET_ID=
