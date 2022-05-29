@@ -30,7 +30,11 @@ services:
       - 5432:5432
     volumes:
       - ./be-friends-api/tools/db:/docker-entrypoint-initdb.d
+      - db:/var/lib/postgresql/data
     environment:
     - POSTGRES_USER=postgres
     - POSTGRES_PASSWORD=postgres
     - POSTGRES_DB=be-friends
+
+volumes:
+  db:
