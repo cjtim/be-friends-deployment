@@ -6,6 +6,9 @@ build-fe:
 
 build: build-api build-fe
 
+up-db:
+	docker compose up db
+
 up: build
 	docker compose up -d
 
