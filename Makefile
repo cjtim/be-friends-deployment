@@ -7,4 +7,8 @@ build-fe:
 build: build-api build-fe
 
 up: build
-	docker compose up
+	docker compose up -d
+
+clean:
+	docker compose down
+	docker volume rm be-friends-deployment_db || true
