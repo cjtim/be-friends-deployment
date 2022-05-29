@@ -1,0 +1,8 @@
+[submodule "be-friends-api"]
+	path = be-friends-api
+	url = https://github.com/cjtim/be-friends-api.git
+	branch = master
+[submodule "be-friends"]
+	path = be-friends
+	url = https://github.com/cjtim/be-friends.git
+	branch = master
