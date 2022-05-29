@@ -7,6 +7,10 @@ services:
       - 3000:3000
     environment:
       - BACKEND_URL=http://api:8080
+    depends_on:
+      - api
+    restart: unless-stopped
+    
   api:
     image: be-friends-api
     ports:
@@ -16,3 +20,17 @@ services:
       - LINE_SECRET_ID=
       - LINE_CALLBACK_URL=http://localhost:8080/auth/line/callback
       - LOGIN_SUCCESS_URL=http://localhost:3000/user
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/be-friends
+    depends_on:
+      - db
+    restart: unless-stopped
+  db:
+    image: postgres:14.3-alpine
+    ports:
+      - 5432:5432
+    volumes:
+      - ./be-friends-api/tools/db:/docker-entrypoint-initdb.d
+    environment:
+    - POSTGRES_USER=postgres
+    - POSTGRES_PASSWORD=postgres
+    - POSTGRES_DB=be-friends
