@@ -1,0 +1,18 @@
+version: '3.7'
+
+services:
+  web:
+    image: be-friends-fe
+    # build:
+    #   context: be-friends
+    #   dockerfile: be-friends/Dockerfile 
+  api:
+    image: be-friends-api
+    # build:
+    #   context: be-friends-api
+    #   dockerfile: be-friends-api/Dockerfile
+    environment:
+      - LINE_CLIENT_ID=
+      - LINE_SECRET_ID=
+      - LINE_CALLBACK_URL=http://localhost:8080/auth/line/callback
+      - LOGIN_SUCCESS_URL=http://localhost:3000/user
