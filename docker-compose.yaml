@@ -10,20 +10,20 @@ services:
     depends_on:
       - api
     restart: unless-stopped
-    
+
   api:
     image: be-friends-api
     ports:
       - 8080:8080
     environment:
-      - LINE_CLIENT_ID=
-      - LINE_SECRET_ID=
-      - LINE_CALLBACK_URL=http://localhost:8080/auth/line/callback
-      - LOGIN_SUCCESS_URL=http://localhost:3000/user
-      - DATABASE_URL=postgresql://postgres:postgres@db:5432/be-friends
+      - LINE_CLIENT_ID=1654423128
+      - LINE_SECRET_ID=635dfe3072be1c01549ba695b064ad3f
+      - LINE_CALLBACK_URL=http://localhost:3000/user/line/callback
+      - DATABASE_URL=postgresql://be-friends:be-friends@cjtim.com:31010/be-friends?sslmode=disable
     depends_on:
       - db
     restart: unless-stopped
+
   db:
     image: postgres:14.3-alpine
     ports:
