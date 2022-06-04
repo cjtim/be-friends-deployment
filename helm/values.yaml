@@ -44,7 +44,7 @@ web:
   image:
     repository: ghcr.io/cjtim/be-friends
     pullPolicy: Always
-    tag: ''
+    tag: ""
 
   imagePullSecrets:
     - name: ghcr.io
@@ -55,9 +55,9 @@ web:
 
   ingress:
     enabled: true
-    className: 'nginx'
+    className: "nginx"
     annotations:
-      kubernetes.io/tls-acme: 'true'
+      kubernetes.io/tls-acme: "true"
     hosts:
       - host: be-friends.cjtim.com
         paths:
