@@ -17,5 +17,6 @@ clean:
 	docker volume rm be-friends-deployment_db || true
 
 deploy-k8s:
-	helm upgrade -i be-friends -n be-friends --create-namespace be-friends/helm -f fe-values.yaml --force
-	helm upgrade -i be-friends-api -n be-friends --create-namespace be-friends-api/helm -f api-values.yaml --force
+	rm -f helm/charts/*
+	helm dependency update helm
+	helm upgrade -i be-friends helm -n be-friends --create-namespace
