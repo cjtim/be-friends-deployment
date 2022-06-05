@@ -9,6 +9,8 @@ api:
     - name: ghcr.io
 
   extraEnvs:
+    - name: JWT_SECRET
+      value: "3547677634"
     - name: LINE_CLIENT_ID
       value: "1654423128"
     - name: LINE_SECRET_ID
@@ -33,13 +35,15 @@ api:
     tls:
       - secretName: wildcard-cjtim-com
 
-  resources:
-    # limits:
-    #   cpu: 100m
-    #   memory: 128Mi
+  resources: &resource-limit
+    limits:
+      cpu: 100m
+      memory: 128Mi
     requests:
       cpu: 100m
       memory: 128Mi
+  redis: *resource-limit
+
 
 web:
   replicaCount: 1
@@ -68,11 +72,4 @@ web:
     tls:
       - secretName: wildcard-cjtim-com
 
-  resources:
-    {}
-    # limits:
-    #   cpu: 100m
-    #   memory: 128Mi
-    # requests:
-    #   cpu: 100m
-    #   memory: 128Mi
+  resources: *resource-limit

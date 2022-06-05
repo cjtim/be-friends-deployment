@@ -1,9 +1,9 @@
 dependencies:
 - name: web
   repository: https://cjtim.github.io/be-friends
-  version: v1.2.0
+  version: v1.2.1
 - name: api
   repository: https://cjtim.github.io/be-friends-api
-  version: v1.1.2
-digest: sha256:6b00d86906845c384fef0be20c70d5b29dda349184cf7139e1acd7ec785e6341
-generated: "2022-06-05T15:22:03.260411+07:00"
+  version: v1.1.5
+digest: sha256:e4b149b454e4d91f949a90df8e51f140a489215cb60139ec09a7a5511c99ca4f
+generated: "2022-06-05T18:47:12.286176+07:00"
