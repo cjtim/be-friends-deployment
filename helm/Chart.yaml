@@ -7,9 +7,9 @@ version: 0.1.0
 appVersion: "1.16.0"
 
 dependencies:
-- name: web
-  version: "v1.2.1"
-  repository: "https://cjtim.github.io/be-friends"
+# - name: web
+#   version: "v1.3.0"
+#   repository: "https://cjtim.github.io/be-friends"
 - name: api
   version: "v1.1.5"
   repository: "https://cjtim.github.io/be-friends-api"
