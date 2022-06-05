@@ -17,6 +17,8 @@ api:
       value: https://be-friends.cjtim.com/user/line/callback
     - name: DATABASE_URL
       value: postgresql://be-friends:be-friends@psql-postgres.psql:5432/be-friends?sslmode=disable
+    - name: REDIS_URL
+      value: be-friends-redis:6379
 
   ingress:
     enabled: true
