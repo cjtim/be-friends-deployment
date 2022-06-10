@@ -7,6 +7,7 @@ on:
 
 jobs:
   deploy:
+    runs-on: ubuntu-20.04
     container:
       image: dtzar/helm-kubectl:3.9.0
     steps:
