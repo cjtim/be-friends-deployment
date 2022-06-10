@@ -18,7 +18,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: chmod permission KUBECONFIG
-        run: chmod 600 ~/.kube/config
+        run: chmod 600 ${{ env.KUBECONFIG }}
 
       - name: Add helm repo
         run: helm repo add api https://cjtim.github.io/be-friends-api
