@@ -1,0 +1,26 @@
+name: Deploy to k8s
+
+on:
+  repository_dispatch:
+    types:
+      - deploy-api
+
+jobs:
+  deploy:
+    container:
+      image: dtzar/helm-kubectl:3.9.0
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+
+      - name: Add KUBECONFIG
+        run: |
+          mkdir ~/.kube
+          cat ${{ secrets.KUBECONFIG }} > ~/.kube/config
+          chmod 600 ~/.kube/config
+
+      - name: Add helm repo
+        run: helm repo add api https://cjtim.github.io/be-friends-api
+      
+      - name: Deploy
+        run: helm upgrade api/api be-friends -f api-values.yaml -n be-friends --create-namespace

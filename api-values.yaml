@@ -1,0 +1,44 @@
+  replicaCount: 1
+  image:
+    repository: ghcr.io/cjtim/be-friends-api
+    pullPolicy: Always
+    tag: ""
+
+  imagePullSecrets:
+    - name: ghcr.io
+
+  extraEnvs:
+    - name: JWT_SECRET
+      value: "3547677634"
+    - name: LINE_CLIENT_ID
+      value: "1654423128"
+    - name: LINE_SECRET_ID
+      value: 635dfe3072be1c01549ba695b064ad3f
+    - name: LINE_CALLBACK_URL
+      value: https://be-friends.vercel.app/user/line/callback
+    - name: DATABASE_URL
+      value: postgresql://be-friends:be-friends@psql-postgres.psql:5432/be-friends?sslmode=disable
+    - name: REDIS_URL
+      value: be-friends-redis:6379
+
+  ingress:
+    enabled: true
+    className: "nginx"
+    annotations:
+      kubernetes.io/tls-acme: "true"
+    hosts:
+      - host: be-friends.cjtim.com
+        paths:
+          - path: /api
+            pathType: Prefix
+    tls:
+      - secretName: wildcard-cjtim-com
+
+  resources: &resource-limit
+    limits:
+      cpu: 100m
+      memory: 128Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
+  redis: *resource-limit
