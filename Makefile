@@ -1,10 +1,5 @@
-build-api:
-	docker build -t be-friends-api -f be-friends-api/Dockerfile be-friends-api
-
-build-fe:
-	docker build -t be-friends-fe -f be-friends/Dockerfile be-friends
-
-build: build-api build-fe
+build:
+	docker compose build --no-cache
 
 up-db:
 	docker compose up db

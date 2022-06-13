@@ -2,26 +2,40 @@ version: '3.7'
 
 services:
   web:
-    image: be-friends-fe
+    # image: be-friends-fe
+    build:
+      context: be-friends
+      args:
+        - NEXT_PUBLIC_BACKEND_URL=http://docker.host.internal:8080
+      dockerfile: tools/Dockerfile
     ports:
       - 3000:3000
     environment:
-      - BACKEND_URL=http://api:8080
+      - NEXT_PUBLIC_BACKEND_URL=http://docker.host.internal:8080
     depends_on:
       - api
     restart: unless-stopped
 
   api:
-    image: be-friends-api
+    build: 
+      context: be-friends-api
+      args:
+        - TAG=local
     ports:
       - 8080:8080
     environment:
-      - LINE_CLIENT_ID=1654423128
-      - LINE_SECRET_ID=635dfe3072be1c01549ba695b064ad3f
+      - LINE_CLIENT_ID=1657212136
+      - LINE_SECRET_ID=92f6bb60aad998a4f1ff886045c0eca7
       - LINE_CALLBACK_URL=http://localhost:3000/user/line/callback
       - DATABASE_URL=postgresql://postgres:postgres@db:5432/be-friends?sslmode=disable
+      - BACKET_NAME=be-friends-pj.appspot.com
+      - GCLOUD_CREDENTIAL=/tmp/k8s-secrets/gstorage.json
+      - REDIS_URL=redis:6379
+    volumes:
+      - ./gstorage.json:/tmp/k8s-secrets/gstorage.json:ro
     depends_on:
       - db
+      - redis
     restart: unless-stopped
 
   db:
@@ -35,6 +49,11 @@ services:
     - POSTGRES_USER=postgres
     - POSTGRES_PASSWORD=postgres
     - POSTGRES_DB=be-friends
+  
+  redis:
+    image: redis:7-alpine
+    ports:
+      - 6379:6379
 
 volumes:
   db:
