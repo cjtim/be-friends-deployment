@@ -22,6 +22,8 @@
       value: postgresql://be-friends:be-friends@psql-postgres.psql:5432/be-friends?sslmode=disable
     - name: REDIS_URL
       value: be-friends-redis:6379
+    - name: BACKET_NAME
+      value: "be-friends-pj.appspot.com"
 
   ingress:
     enabled: true

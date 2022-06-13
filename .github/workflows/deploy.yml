@@ -24,4 +24,8 @@ jobs:
         run: helm repo add api https://cjtim.github.io/be-friends-api
       
       - name: Deploy
-        run: helm upgrade --install be-friends api/api -f api-values.yaml -n be-friends --create-namespace
+        run: |
+          helm upgrade --install be-friends api/api \
+          -f api-values.yaml \
+          --set-file gstorageJson=gstorage.json \
+          -n be-friends --create-namespace
