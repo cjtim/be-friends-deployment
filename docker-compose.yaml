@@ -6,12 +6,12 @@ services:
     build:
       context: be-friends
       args:
-        - NEXT_PUBLIC_BACKEND_URL=http://docker.host.internal:8080
+        - NEXT_PUBLIC_BACKEND_URL=http://host.docker.internal:8080
       dockerfile: tools/Dockerfile
     ports:
       - 3000:3000
     environment:
-      - NEXT_PUBLIC_BACKEND_URL=http://docker.host.internal:8080
+      - NEXT_PUBLIC_BACKEND_URL=http://host.docker.internal:8080
     depends_on:
       - api
     restart: unless-stopped
