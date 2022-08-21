@@ -1,6 +1,7 @@
 name: Deploy to k8s
 
 on:
+  workflow_dispatch:
   repository_dispatch:
     types:
       - deploy-api
