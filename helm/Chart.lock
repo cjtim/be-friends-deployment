@@ -1,6 +1,0 @@
-dependencies:
-- name: api
-  repository: https://cjtim.github.io/be-friends-api
-  version: v1.1.5
-digest: sha256:1230a70b2873b00dc6d27960d1145aa139020e11bc3d5e6a28320dd6cd5899bb
-generated: "2022-06-05T22:32:13.905932+07:00"
